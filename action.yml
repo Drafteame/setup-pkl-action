@@ -1,0 +1,20 @@
+name: 'custom-action-template'
+
+description: ''
+
+branding:
+  icon: database
+  color: blue
+
+inputs:
+  action:
+    description: 'action to perform'
+    required: true
+
+# outputs:
+#   out_val:
+#     description: 'some output value'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
