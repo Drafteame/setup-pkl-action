@@ -1,6 +1,6 @@
 name: 'setup-pkl-action'
 
-description: ''
+description: 'Setup PKL CLI.'
 
 branding:
   icon: package
