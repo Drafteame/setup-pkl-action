@@ -1,13 +1,22 @@
-# Custom github action template
+# Setup PKL Action
 
-Custom Github action template to build complex task that should take many steps or that are not available on market
-place.
+Composite action to setup a PKL CLI and make it available on PATH.
 
-## Instructions
+## Example usage
 
-Review and adjust the next files to finish your action setup:
+```yaml
+jobs:
+  pkl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-- action.yml
-- Dockerfile
-- package.json
-- .github/workflows/release.yml
+      - name: Setup PKL
+        uses: Drafteame/setup-pkl-action@main
+
+      - name: Eval
+        run: pkl eval -f json test.pkl > test.json
+
+      - name: Print config
+        run: cat test.json
+```
