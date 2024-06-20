@@ -1,20 +1,26 @@
-name: 'custom-action-template'
+name: 'setup-pkl-action'
 
 description: ''
 
 branding:
-  icon: database
+  icon: package
   color: blue
 
 inputs:
-  action:
-    description: 'action to perform'
-    required: true
-
-# outputs:
-#   out_val:
-#     description: 'some output value'
+  version:
+    description: Desired pkl version.
+    default: "0.25.3"
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: composite
+  steps:
+    - name: Setup PKL CLI
+      shell: bash
+      run: |
+        curl -L -o pkl https://github.com/apple/pkl/releases/download/${{ inputs.version }}/pkl-alpine-linux-amd64
+        chmod +x pkl
+        mv pkl /usr/local/bin/pkl
+
+    - name: PKL Version
+      shell: bash
+      run: pkl --version

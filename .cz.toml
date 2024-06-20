@@ -5,9 +5,6 @@ version = "0.0.0"
 tag_format = "v$version"
 bump_message = "bump: release $current_version → $new_version [skip-ci]"
 update_changelog_on_bump = false
-version_files = [
-    "package.json:version",
-]
 
 [tool.commitizen.customize]
 schema_pattern = "(break|build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert|bump|deps)(\\(\\S+\\))?!?:(\\s.*)"
