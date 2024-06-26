@@ -1,6 +1,6 @@
 {
   "name": "setup-pkl-action",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "description": "Github action that installs the PKL cli",
   "main": "index.js",
