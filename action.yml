@@ -18,8 +18,8 @@ runs:
       shell: bash
       run: |
         curl -L -o pkl https://github.com/apple/pkl/releases/download/${{ inputs.version }}/pkl-alpine-linux-amd64
-        chmod +x pkl
-        mv pkl /usr/local/bin/pkl
+        sudo chmod +x pkl
+        sudo mv pkl /usr/local/bin/pkl
 
     - name: PKL Version
       shell: bash
