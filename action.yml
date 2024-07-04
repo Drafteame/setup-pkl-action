@@ -12,5 +12,15 @@ inputs:
     default: '0.26.0'
 
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: composite
+  steps:
+    - name: Setup PKL CLI
+      shell: bash
+      run: |
+        curl -L -o pkl https://github.com/apple/pkl/releases/download/${{ inputs.version }}/pkl-alpine-linux-amd64
+        chmod +x pkl
+        sudo mv pkl /usr/local/bin/pkl
+
+    - name: PKL Version
+      shell: bash
+      run: pkl --version
