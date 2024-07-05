@@ -17,6 +17,12 @@ runs:
     - name: Setup PKL CLI
       shell: bash
       run: |
+        sudo apt-get update
+        if ! [ -x "$(command -v curl)" ]; then
+          sudo apt-get install curl -y
+        else
+          echo "curl already installed..."
+        fi
         curl -L -o pkl https://github.com/apple/pkl/releases/download/${{ inputs.version }}/pkl-alpine-linux-amd64
         chmod +x pkl
         sudo mv pkl /usr/local/bin/pkl
