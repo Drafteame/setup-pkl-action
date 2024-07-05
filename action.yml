@@ -17,8 +17,8 @@ runs:
     - name: Setup PKL CLI
       shell: bash
       run: |
-        sudo apt-get update
         if ! [ -x "$(command -v curl)" ]; then
+          sudo apt-get update
           sudo apt-get install curl -y
         else
           echo "curl already installed..."
