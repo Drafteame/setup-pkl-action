@@ -14,6 +14,14 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Cache PKL binary
+      uses: useblacksmith/cache@v5
+      with:
+        path: /usr/local/bin/pkl
+        key: pkl-${{ inputs.version }}
+        restore-keys: |
+          pkl-
+
     - name: Setup PKL CLI
       shell: bash
       run: |
@@ -23,9 +31,15 @@ runs:
         else
           echo "curl already installed..."
         fi
-        curl -L -o pkl https://github.com/apple/pkl/releases/download/${{ inputs.version }}/pkl-alpine-linux-amd64
-        chmod +x pkl
-        sudo mv pkl /usr/local/bin/pkl
+
+        if ! [ -f /usr/local/bin/pkl ]; then
+          echo "Downloading PKL..."
+          curl -L -o pkl https://github.com/apple/pkl/releases/download/${{ inputs.version }}/pkl-alpine-linux-amd64
+          chmod +x pkl
+          sudo mv pkl /usr/local/bin/pkl
+        else
+          echo "PKL already cached..."
+        fi
 
     - name: PKL Version
       shell: bash
